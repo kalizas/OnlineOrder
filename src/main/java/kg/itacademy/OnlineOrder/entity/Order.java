@@ -1,6 +1,7 @@
 package kg.itacademy.OnlineOrder.entity;
 
 
+import kg.itacademy.OnlineOrder.model.OrderModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,4 +28,15 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "menu_id", referencedColumnName = "id")
     private Menu menu;
+
+    @OneToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private String order;
+
+    public OrderModel toModel(){
+        return OrderModel.builder()
+                .id(id)
+                .scheduleTime(scheduleTime)
+                .build();
+    }
 }

@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 //@Component
 //@Slf4j
-//public class JwtUtil {
+public class JwtUtil {
 //    private final String SECRET_KEY = "secret";
 //
 //    public String extractUsername(String token) {
@@ -52,6 +52,6 @@ import java.util.function.Function;
 //        final String username = extractUsername(token);
 //        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 //    }
-//}
+}
 
 

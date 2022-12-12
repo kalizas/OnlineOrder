@@ -3,6 +3,7 @@ package kg.itacademy.OnlineOrder.service.impl;
 import kg.itacademy.OnlineOrder.entity.Image;
 import kg.itacademy.OnlineOrder.entity.Menu;
 import kg.itacademy.OnlineOrder.entity.Order;
+import kg.itacademy.OnlineOrder.exeptions.NotFoundException;
 import kg.itacademy.OnlineOrder.model.MenuModel;
 import kg.itacademy.OnlineOrder.model.OrderModel;
 import kg.itacademy.OnlineOrder.model.request.ImageModelRequest;
@@ -12,7 +13,7 @@ import kg.itacademy.OnlineOrder.repository.MenuRepository;
 import kg.itacademy.OnlineOrder.repository.OrderRepository;
 import kg.itacademy.OnlineOrder.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -30,7 +31,7 @@ public class UserServiceimpl extends UserService {
     private final static String URL_PATH = "C:\\Users\\user\\Desktop";
 
 
-    public MenuModel addNewFood(MenuModel menuModel) {
+    public MenuModel addNewFood(@NotNull MenuModel menuModel) {
         Menu menu = new Menu();
         menu.setFoodName(menuModel.getNameFood());
         menu.setPrice(menuModel.getPrice());
@@ -73,13 +74,14 @@ public class UserServiceimpl extends UserService {
         return imageModelResponses;
     }
 
-//    @Override
-//    public OrderModel getOrderById(Long id) {
-//        Order order = orderRepository
-//                .findById(id)
-//                .orElseThrow(() -> new ChangeSetPersister.NotFoundException("Id: " + id + "не найден"));
-//        return null;
-//    }
+    @Override
+    public OrderModel getOrderById(Long id) {
+        Order order = orderRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Id: " + id + "не найден"));
+        return order.toModel();
+    }
+
 
     @Override
     public void deleteFoodById(Long id) {

@@ -12,15 +12,11 @@ public abstract class UserService {
         return null;
     }
 
-    List<ImageModelResponse> getAll(ImageModelResponse imageModelResponse) {
+    public OrderModel getOrderById(Long id) {
         return null;
     }
 
     public abstract List<ImageModelResponse> getAll(ImageModelResponse imageModelResponse);
-
-    public OrderModel getOrderById(Long id) {
-        return null;
-    }
 
     public void deleteFoodById(Long id) {
 
